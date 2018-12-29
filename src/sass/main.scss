@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+
+
+  // 0. Generic – reset and/or normalize styles
+  @import
+    '00-generic/_base';
+
+
+// 1. Components – specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
+
+@import
+    '01-components/Wrapper',
+    '01-components/Label',
+    '01-components/Clock';
+
+
+  // 2. Utilities– utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class
+@import
+    '02-utilities/_animation';
+
+// 3. Tools – globally used mixins and functions. It’s important not to output any CSS in the first 2 layers.
+@import
+    '03-tools/_media-queries';

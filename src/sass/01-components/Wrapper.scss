@@ -1,0 +1,31 @@
+.back{
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50vmax;
+  height: 90vh;
+  background: transparent;
+
+  //play pause icon
+  #play{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    cursor: pointer;
+    font-size: 2em;
+    color: white;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .wrap-label{
+    position: absolute;
+    top: 80%;
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

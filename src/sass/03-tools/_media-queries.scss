@@ -1,0 +1,53 @@
+@media only screen and (max-width: 800px){
+  //for phones and tablets
+  body .clock{
+    top: 45%;
+    border-width: 2px !important;
+
+    .refresh{
+      font-size: 3.0vmax;
+    }
+
+    #text{
+      font-size: 0.7em;
+    }
+
+    #time{
+      font-size: 3em;
+    }
+  }
+  body .back {
+    top: 2%;
+
+    #play{
+      top: 20%;
+      font-size: 1.4em;
+    }
+
+    .wrap-label{
+      width: 100vw;
+    }
+  }
+  .back .label{
+    font-size: 0.7em;
+   }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px){
+
+  body{
+
+   .back {
+     #play{
+       font-size: 1.8em;
+      }
+      .wrap-label{
+        width: 80vw;
+      }
+    }
+
+    .clock #text{
+      font-size: 1em;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.label{
+  width: calc(13em + 3vmax);
+  height: calc(6em);
+  color: #a6a6a6;
+  background: rgba(0,0,0, 0.3) !important;
+
+  .head{
+    top: 10%;
+    text-align: center;
+    cursor: default;
+  }
+
+  .line{
+    height: 2px;
+    border: none;
+    width: calc(13em + 3vmax);
+    top: 35%;
+    font-size: calc(0.7em + 0.3vmax);
+    transform: translateY(-50%);
+    background-image: linear-gradient(to bottom, #063f35, #013235, #0d252d, #12181f, #0b0b0c);
+  }
+
+
+  .inline{
+  //  margin-top: 3%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    .length{
+       font-size: calc(1.2em + 0.3vmax);
+        cursor: default;
+        margin-top:  -2%;
+    }
+
+    .inc{
+      color: #FF6D00;
+      cursor: pointer;
+    }
+
+    .dec{
+      color: #FF6D00;
+      cursor: pointer;
+    }
+  }
+
+}

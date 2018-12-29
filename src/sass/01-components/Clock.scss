@@ -1,0 +1,41 @@
+.clock{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(10em + 8vmax);
+  height: calc(10em + 8vmax);
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0px 3px 5px rgba(244, 244, 244, 0.3) inset;
+  transition: all 1s ease-in-out;
+
+  #time{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    cursor: default;
+  }
+
+  #text{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    font-size: 1em;
+    transform: translateX(-50%);
+    cursor: default;
+  }
+
+  .refresh{
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vmax;
+    cursor: pointer;
+  }
+}
