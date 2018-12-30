@@ -81,7 +81,7 @@ startTimer(){
             if(regex.test(seconds)){
                var time =  (regex.test(minutes)) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds);
             }else {
-               var time =  (regex.test(minutes)) ? this.genTime(minutes,'0' + seconds) : this.genTime('0' + minutes,'0' + seconds);
+                time =  (regex.test(minutes)) ? this.genTime(minutes,'0' + seconds) : this.genTime('0' + minutes,'0' + seconds);
             }
            this.props.updateTime(time);
             }.bind(this));

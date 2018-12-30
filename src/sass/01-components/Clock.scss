@@ -19,6 +19,7 @@
     transform: translate(-50%, -50%);
     font-size: 4em;
     cursor: default;
+    user-select: none;
   }
 
   #text{
@@ -28,6 +29,7 @@
     font-size: 1em;
     transform: translateX(-50%);
     cursor: default;
+    user-select: none;
   }
 
   .refresh{

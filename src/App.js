@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Wrapper from './components/Wrapper.js'
 import { Provider } from 'react-redux'
 import store from './redux/store.js'
