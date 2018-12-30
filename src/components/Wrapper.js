@@ -1,10 +1,10 @@
 import React from 'react'
 import $ from 'jquery'
 import asyncComponent from './asyncComponent/async';
-//import Label from './Label'
-//import Clock from './Clock'
+import {connect} from 'react-redux'
+import {mapStateToProps} from '../redux/utilities/mapping-functions'
+import {mapDispatchToProps} from '../redux/utilities/mapping-functions'
 import '../sass/02-utilities/_animation.scss';
-//import {connect} from 'react-redux'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 //dynamic import
@@ -26,7 +26,7 @@ class Wrapper extends React.Component {
     super(props);
     this.state = {
       time: '25:00',
-      play: true,
+      play: false,
       sessionLength: 25,
       breakLength: 5,
       interval: null
@@ -48,29 +48,27 @@ class Wrapper extends React.Component {
   handlePlay(){
     $('#play').toggleClass('fa-play');
     $('#play').toggleClass('fa-pause');
-    this.setState(function(prevState, props){
-      return {play: !prevState.play}
-   });
-    if(this.state.play){
-      this.setState({interval: this.startTimer()});
+    this.props.updatePlay(!this.props.play);
+    if(!this.props.play){
+      this.props.updateInterval(this.startTimer());
     }
     else{
-      requestInterval.clear(this.state.interval);
+      requestInterval.clear(this.props.interval);
     }
   }
 
 
 startTimer(){
   return  requestInterval(1000, function() {
-             var seconds = this.state.time.split(':')[1];
-             var minutes = this.state.time.split(':')[0];
+             var seconds = this.props.time.split(':')[1];
+             var minutes = this.props.time.split(':')[0];
              var regex = /^\d{2}$/;
              if(minutes == 0 && seconds == 0){
-                requestInterval.clear(this.state.interval);
+                requestInterval.clear(this.props.interval);
                 this.switchBreakState = !this.switchBreakState;
-                minutes = (this.switchBreakState) ? this.state.breakLength : this.state.sessionLength;
+                minutes = (this.switchBreakState) ? this.props.breakLength : this.props.sessionLength;
                 this.switchBreakState ? $('#text').text('BREAK') : $('#text').text('SESSION');
-                this.setState({interval: this.startTimer()});
+                this.props.updateInterval(this.startTimer());
              }
              else if(seconds != 0){
                   seconds = seconds - 1;
@@ -81,11 +79,11 @@ startTimer(){
 
             (minutes == 0) ? this.animate() : this.stopAnimation();
             if(regex.test(seconds)){
-               var time =  regex.test(minutes) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds);
+               var time =  (regex.test(minutes)) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds);
             }else {
-               var time =  regex.test(minutes) ? this.genTime(minutes,'0' + seconds) : this.genTime('0' + minutes,'0' + seconds);
+               var time =  (regex.test(minutes)) ? this.genTime(minutes,'0' + seconds) : this.genTime('0' + minutes,'0' + seconds);
             }
-            this.setState({time: time});
+           this.props.updateTime(time);
             }.bind(this));
   }
 
@@ -93,8 +91,12 @@ handleRefresh(){
   $('#text').text('SESSION');
   $('.fa-pause').removeClass('fa-pause').addClass('fa-play', 200);
   this.stopAnimation();
-  requestInterval.clear(this.state.interval);
-  this.setState({time: '25:00'});
+  requestInterval.clear(this.props.interval);
+  this.props.updateTime('25:00');
+  this.props.updatePlay(false);
+  this.props.updateSession(25);
+  this.props.updateBreak(5);
+  this.switchBreakState = false;
 }
 
 
@@ -114,41 +116,41 @@ genTime(minutes, seconds) {
 }
 
 incSession(){
-  if(this.state.sessionLength < 60){
-  var time = (this.state.sessionLength + 1) + ':00';
-  this.setState({sessionLength: this.state.sessionLength + 1});
+  if(this.props.sessionLength < 60){
+  var time = (this.props.sessionLength + 1) + ':00';
+  this.props.updateSession(this.props.sessionLength + 1);
   if(!this.switchBreakState){
-    this.setState({time: time});
+    this.props.updateTime(time);
   }
  }
 }
 
 decSession(){
-  if(this.state.sessionLength > 0){
-  var time = (this.state.sessionLength - 1) + ':00';
-  this.setState({sessionLength: this.state.sessionLength - 1});
+  if(this.props.sessionLength > 0){
+  var time = (this.props.sessionLength - 1) + ':00';
+  this.props.updateSession(this.props.sessionLength - 1);
   if(!this.switchBreakState){
-    this.setState({time: time});
+     this.props.updateTime(time);
   }
  }
 }
 
 incBreak(){
-  if(this.state.breakLength < 60){
-  var time = (this.state.breakLength + 1) + ':00';
-  this.setState({breakLength: this.state.breakLength + 1});
+  if(this.props.breakLength < 60){
+  var time = (this.props.breakLength + 1) + ':00';
+  this.props.updateBreak(this.props.breakLength + 1);
   if(this.switchBreakState){
-    this.setState({time: time});
+    this.props.updateTime(time);
   }
  }
 }
 
 decBreak(){
-  if(this.state.breakLength > 0){
-  var time = (this.state.breakLength - 1) + ':00';
-  this.setState({breakLength: this.state.breakLength - 1});
+  if(this.props.breakLength > 0){
+  var time = (this.props.breakLength - 1) + ':00';
+  this.props.updateBreak(this.props.breakLength - 1);
   if(this.switchBreakState){
-    this.setState({time: time});
+    this.props.updateTime(time);
   }
  }
 }
@@ -157,10 +159,10 @@ decBreak(){
     return (
       <div class='back'>
         <i id='play' class='fa fa-play' onClick={this.handlePlay}></i>
-        <Clock time={this.state.time} onClick={this.handleRefresh}/>
+        <Clock time={this.props.time} onClick={this.handleRefresh}/>
         <div className='wrap-label'>
-        <Label id='session-label' text='SESSION LENGTH' length={this.state.sessionLength} increment={this.incSession} decrement={this.decSession}/>
-        <Label id='break-label' text='BREAK LENGTH' length={this.state.breakLength} increment={this.incBreak} decrement={this.decBreak}/>
+        <Label id='session-label' text='SESSION LENGTH' length={this.props.sessionLength} increment={this.incSession} decrement={this.decSession}/>
+        <Label id='break-label' text='BREAK LENGTH' length={this.props.breakLength} increment={this.incBreak} decrement={this.decBreak}/>
         </div>
       </div>
     )
@@ -168,4 +170,4 @@ decBreak(){
 }
 
 
-export default Wrapper ;
+export default connect(mapStateToProps,mapDispatchToProps)(Wrapper) ;
