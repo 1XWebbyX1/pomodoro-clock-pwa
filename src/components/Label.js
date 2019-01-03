@@ -8,9 +8,9 @@ class Label extends React.Component {
         <p class='head'>{this.props.text}</p>
         <hr class='line' />
         <div class='inline'>
-        <i class='fa fa-plus inc' onClick={this.props.increment}></i>
+        <div class='wrap-plus inc' onClick={this.props.increment}><i class='fa fa-plus'></i></div>
         <p class='length'>{this.props.length}</p>
-        <i  class='fa fa-minus dec' onClick={this.props.decrement}></i>
+        <div class='wrap-minus dec' onClick={this.props.decrement}><i  class='fa fa-minus' onClick={this.props.decrement}></i></div>
         </div>
       </div>
       );

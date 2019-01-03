@@ -54,6 +54,7 @@ class Wrapper extends React.Component {
     }
     else{
       requestInterval.clear(this.props.interval);
+      this.audioBeep.pause();
     }
   }
 
@@ -117,6 +118,7 @@ animate(){
 stopAnimation(){
     $('.clock').css('border', '4px solid #0d252d');
     $('.clock').css('box-shadow', '0px 3px 5px rgba(244, 244, 244, 0.3) inset');
+    this.audioBeep.pause();
 }
 
 genTime(minutes, seconds) {
