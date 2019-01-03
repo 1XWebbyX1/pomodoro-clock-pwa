@@ -78,6 +78,15 @@ startTimer(){
             }
 
             (minutes == 0) ? this.animate() : this.stopAnimation();
+            this.audioBeep.currentTime = 0;
+            var promise = document.querySelector('audio').play();
+               if (promise !== undefined) {
+                  promise.then(_ => {
+                  (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
+               }).catch(error => {
+                 // Autoplay was prevented.
+              });
+            }
             if(regex.test(seconds)){
                var time =  (regex.test(minutes)) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds);
             }else {
@@ -160,6 +169,9 @@ decBreak(){
       <div class='back'>
         <i id='play' class='fa fa-play' onClick={this.handlePlay}></i>
         <Clock time={this.props.time} onClick={this.handleRefresh}/>
+        <audio id="beep" preload="auto"
+         src="https://goo.gl/65cBl1"
+         ref={(audio) => { this.audioBeep = audio; }} />
         <div className='wrap-label'>
         <Label id='session-label' text='SESSION LENGTH' length={this.props.sessionLength} increment={this.incSession} decrement={this.decSession}/>
         <Label id='break-label' text='BREAK LENGTH' length={this.props.breakLength} increment={this.incBreak} decrement={this.decBreak}/>

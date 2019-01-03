@@ -17,6 +17,7 @@ Project is created with :
 - Set Interval for break or session
 - Automatically switches to break or session when timer comes to end
 - Refresh, Start and Pause any time
+- Notifies with audio when less than 5 seconds left on timer
 - Set session or break duration for up to 60 minutes
 
 # Install
