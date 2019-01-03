@@ -16,8 +16,8 @@ Project is created with :
 # Key features
 - Set Interval for break or session
 - Automatically switches to break or session when timer comes to end
-- Refresh, Start, Pause any timer
-- Set session or break duration up to 60 minutes
+- Refresh, Start and Pause any time
+- Set session or break duration for up to 60 minutes
 
 # Install
 
