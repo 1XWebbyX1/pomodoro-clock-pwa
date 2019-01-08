@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e93529bb2a5737d6fa65",
-    "url": "/pomodoro-clock-pwa/static/css/main.4bd025ad.chunk.css"
+    "revision": "f22e2e30575bf293528e",
+    "url": "/pomodoro-clock-pwa/static/css/main.d1b800a4.chunk.css"
   },
   {
-    "revision": "e93529bb2a5737d6fa65",
-    "url": "/pomodoro-clock-pwa/static/js/main.e93529bb.chunk.js"
+    "revision": "f22e2e30575bf293528e",
+    "url": "/pomodoro-clock-pwa/static/js/main.f22e2e30.chunk.js"
   },
   {
     "revision": "7d5adf3599dad3627bae",
@@ -72,12 +72,12 @@ self.__precacheManifest = [
     "url": "/pomodoro-clock-pwa/static/media/fa-regular-400.734248d0.svg"
   },
   {
-    "revision": "1709a2810c3752483683f3f7d287aa89",
-    "url": "/pomodoro-clock-pwa/static/media/fa-solid-900.1709a281.ttf"
-  },
-  {
     "revision": "f72d546abcc27880adf8428792c72519",
     "url": "/pomodoro-clock-pwa/static/media/fa-solid-900.f72d546a.eot"
+  },
+  {
+    "revision": "1709a2810c3752483683f3f7d287aa89",
+    "url": "/pomodoro-clock-pwa/static/media/fa-solid-900.1709a281.ttf"
   },
   {
     "revision": "fef43c1fd872ef7f1880483d9b63ccf2",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/pomodoro-clock-pwa/static/media/fa-solid-900.27603739.svg"
   },
   {
-    "revision": "0267011d1dc7de6bb10de711b5948700",
+    "revision": "6bbe327eba3557824d951591060ba4f0",
     "url": "/pomodoro-clock-pwa/index.html"
   }
 ];
