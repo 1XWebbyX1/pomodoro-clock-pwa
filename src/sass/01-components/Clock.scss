@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: calc(10em + 8vmax);
-  height: calc(10em + 8vmax);
+  width: calc(10em + 8vw);
+  height: calc(10em + 8vw);
   background-color: transparent;
   border: none;
   border-radius: 50%;
@@ -37,7 +37,7 @@
     top: 88%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2vmax;
+    font-size: calc(0.5em + 1.5vw);
     cursor: pointer;
   }
 }

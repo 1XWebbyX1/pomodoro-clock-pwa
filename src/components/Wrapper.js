@@ -79,9 +79,9 @@ startTimer(){
             }
 
             (minutes == 0) ? this.animate() : this.stopAnimation();
-            this.audioBeep.currentTime = 0;
             var promise = document.querySelector('audio').play();
                if (promise !== undefined) {
+                   this.audioBeep.currentTime = 0;
                   promise.then(_ => {
                   (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
                }).catch(error => {

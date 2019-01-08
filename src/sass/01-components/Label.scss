@@ -1,5 +1,5 @@
 .label{
-  width: calc(13em + 3vmax);
+  width: calc(13em + 3vw);
   height: 6.5em;
   color: #a6a6a6;
   background: rgba(0,0,0, 0.3) !important;
@@ -14,9 +14,9 @@
   .line{
     height: 2px;
     border: none;
-    width: calc(13em + 2vmax);
+    width: calc(13em + 2vw);
     top: 32%;
-    font-size: calc(0.7em + 0.3vmax);
+    font-size: calc(0.7em + 0.3vw);
     transform: translateY(-50%);
     background-image: linear-gradient(to bottom, #063f35, #013235, #0d252d, #12181f, #0b0b0c);
   }
@@ -27,7 +27,7 @@
     justify-content: space-around;
     align-items: flex-start;
     .length{
-       font-size: calc(1.2em + 0.3vmax);
+       font-size: calc(1.2em + 0.3vw);
         cursor: default;
         user-select: none;
         margin-top:  -2%;
