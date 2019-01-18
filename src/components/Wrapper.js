@@ -1,21 +1,11 @@
 import React from 'react'
 import $ from 'jquery'
-import asyncComponent from './asyncComponent/async';
 import {connect} from 'react-redux'
 import {mapStateToProps} from '../redux/utilities/mapping-functions'
 import {mapDispatchToProps} from '../redux/utilities/mapping-functions'
-import '../sass/02-utilities/_animation.scss';
 import '@fortawesome/fontawesome-free/css/all.css'
-
-//dynamic import
-const Label = asyncComponent(() =>
-    	    import('./Label').then(module => module.default)
-    	);
-
-
-const Clock = asyncComponent(() =>
-         import('./Clock').then(module => module.default)
-    );
+import Label from './Label'
+import Clock from './Clock'
 
 
 var requestInterval = require('request-interval');
@@ -86,6 +76,7 @@ startTimer(){
                   (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
                }).catch(error => {
                  // Autoplay was prevented.
+                 console.log('Autoplay not supported by browser');
               });
             }
             if(regex.test(seconds)){
