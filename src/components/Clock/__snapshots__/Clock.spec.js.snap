@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clock renders correctly 1`] = `
+<div
+  class="clock"
+>
+  <p
+    id="text"
+  >
+    SESSION
+  </p>
+  <time
+    id="time"
+  >
+    24:00
+  </time>
+  <i
+    className="refresh fa fa-sync-alt"
+    onClick={[MockFunction]}
+  />
+</div>
+`;

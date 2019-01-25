@@ -1,11 +1,8 @@
 import React from 'react'
 import $ from 'jquery'
-import {connect} from 'react-redux'
-import {mapStateToProps} from '../redux/utilities/mapping-functions'
-import {mapDispatchToProps} from '../redux/utilities/mapping-functions'
 import '@fortawesome/fontawesome-free/css/all.css'
-import Label from './Label'
-import Clock from './Clock'
+import Label from './Label/Label'
+import Clock from './Clock/Clock'
 
 
 var requestInterval = require('request-interval');
@@ -28,6 +25,8 @@ class Wrapper extends React.Component {
     this.stopAnimation = this.stopAnimation.bind(this);
     this.genTime = this.genTime.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.genTimer = this.genTimer.bind(this);
+    this.checkAndPlayAudio = this.checkAndPlayAudio.bind(this);
     this.incSession = this.incSession.bind(this);
     this.decSession = this.decSession.bind(this);
     this.incBreak = this.incBreak.bind(this);
@@ -38,55 +37,70 @@ class Wrapper extends React.Component {
   handlePlay(){
     $('#play').toggleClass('fa-play');
     $('#play').toggleClass('fa-pause');
-    this.props.updatePlay(!this.props.play);
+    this.props.updatePlay(!this.props.play); // update boolean state with redux
     if(!this.props.play){
-      this.props.updateInterval(this.startTimer());
+      this.props.updateInterval(this.startTimer()); //initiate the timer
     }
     else{
-      requestInterval.clear(this.props.interval);
-      this.audioBeep.pause();
+      requestInterval.clear(this.props.interval); //stop timer
+      this.audioBeep.pause(); //stop audio if playing
     }
   }
 
 
 startTimer(){
   return  requestInterval(1000, function() {
-             var seconds = this.props.time.split(':')[1];
-             var minutes = this.props.time.split(':')[0];
              var regex = /^\d{2}$/;
-             if(minutes == 0 && seconds == 0){
-                requestInterval.clear(this.props.interval);
-                this.switchBreakState = !this.switchBreakState;
-                minutes = (this.switchBreakState) ? this.props.breakLength : this.props.sessionLength;
-                this.switchBreakState ? $('#text').text('BREAK') : $('#text').text('SESSION');
-                this.props.updateInterval(this.startTimer());
-             }
-             else if(seconds != 0){
-                  seconds = seconds - 1;
-            }else{
-                  seconds = 59;
-                  minutes = minutes -1;
-            }
-
+             var minutes = this.genTimer().minutes;
+             var seconds = this.genTimer().seconds;
+            //animate when less than 1 minute
             (minutes == 0) ? this.animate() : this.stopAnimation();
-            var promise = document.querySelector('audio').play();
-               if (promise !== undefined) {
-                   this.audioBeep.currentTime = 0;
-                  promise.then(_ => {
-                  (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
-               }).catch(error => {
-                 // Autoplay was prevented.
-                 console.log('Autoplay not supported by browser');
-              });
-            }
+            this.checkAndPlayAudio(minutes, seconds);
+
             if(regex.test(seconds)){
-               var time =  (regex.test(minutes)) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds);
-            }else {
+               var time =  (regex.test(minutes)) ? this.genTime(minutes, seconds) : this.genTime('0' + minutes, seconds); // if minutes are single digit append 0 to start
+            }else {//if seconds are single digit append 0 to start
                 time =  (regex.test(minutes)) ? this.genTime(minutes,'0' + seconds) : this.genTime('0' + minutes,'0' + seconds);
             }
            this.props.updateTime(time);
             }.bind(this));
   }
+
+genTimer(){
+  var seconds = this.props.time.split(':')[1];
+  var minutes = this.props.time.split(':')[0];
+  if(minutes == 0 && seconds == 0){
+     requestInterval.clear(this.props.interval);
+     this.switchBreakState = !this.switchBreakState;
+     minutes = (this.switchBreakState) ? this.props.breakLength : this.props.sessionLength;
+     this.switchBreakState ? $('#text').text('BREAK') : $('#text').text('SESSION');
+     this.props.updateInterval(this.startTimer());
+  }
+  else if(seconds != 0){
+       seconds = seconds - 1;
+ }else{
+       seconds = 59;
+       minutes = minutes -1;
+ }
+ return {minutes: minutes, seconds: seconds};
+}
+
+
+checkAndPlayAudio(minutes, seconds){
+  var promise = this.audioBeep.play();
+  console.log(promise);
+     if (promise !== undefined) {
+       console.log('here');
+        this.audioBeep.currentTime = 0;
+        promise.then(() => {
+        (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
+        }).catch(error => {
+          // Autoplay was prevented.
+           console.log('Autoplay not supported by browser');
+         });
+     }
+ }
+
 
 handleRefresh(){
   $('#text').text('SESSION');
@@ -159,12 +173,10 @@ decBreak(){
 
   render() {
     return (
-      <div class='back'>
+      <div className='back'>
         <i id='play' class='fa fa-play' onClick={this.handlePlay}></i>
         <Clock time={this.props.time} onClick={this.handleRefresh}/>
-        <audio id="beep" preload="auto"
-         src="https://goo.gl/65cBl1"
-         ref={(audio) => { this.audioBeep = audio; }} />
+        <audio id="beep" preload="auto" src="https://goo.gl/65cBl1" ref={(audio) => { this.audioBeep = audio; }} />
         <div className='wrap-label'>
         <Label id='session-label' text='SESSION LENGTH' length={this.props.sessionLength} increment={this.incSession} decrement={this.decSession}/>
         <Label id='break-label' text='BREAK LENGTH' length={this.props.breakLength} increment={this.incBreak} decrement={this.decBreak}/>
@@ -175,4 +187,4 @@ decBreak(){
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Wrapper) ;
+export default Wrapper ;

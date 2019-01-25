@@ -23,7 +23,7 @@ export const mapDispatchToProps = (dispatch) => {
         dispatch(mapModule.updatePlayState(bool));
     },
     updateInterval : function(id) {
-        dispatch(mapModule.updateInterval(id));
+        dispatch(mapModule.updateItInterval(id));
     },
     updateTime : function(time) {
         dispatch(mapModule.updateTime(time));

@@ -30,7 +30,7 @@ export const updatePlayState = (bool) => {
   };
 };
 
-export const updateInterval = (id) => {
+export const updateItInterval = (id) => {
   return {
    type: UPDATE_INTERVAL,
    interval: id

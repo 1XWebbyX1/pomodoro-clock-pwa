@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label renders correctly 1`] = `
+<div
+  class="label"
+  id="session-label"
+>
+  <p
+    class="head"
+  >
+    SESSION LENGTH
+  </p>
+  <hr
+    class="line"
+  />
+  <div
+    class="inline"
+  >
+    <div
+      className="wrap-plus inc"
+      onClick={[MockFunction]}
+    >
+      <i
+        class="fa fa-plus"
+      />
+    </div>
+    <p
+      class="length"
+    >
+      24
+    </p>
+    <div
+      className="wrap-minus dec"
+      onClick={[MockFunction]}
+    >
+      <i
+        class="fa fa-minus"
+      />
+    </div>
+  </div>
+</div>
+`;
