@@ -8,16 +8,19 @@ For a live demo, visit [github](https://1xwebbyx1.github.io/pomodoro-clock-pwa/)
 
 # Technologies
 Project is created with :
-- React version : 16.7
-- Sass: 4.11
-- jQuery: 3.3
-- Redux: 4.0
+- React
+- Sass
+- jQuery
+- Redux
+- Chai
+- Enzyme
+- Jest
 
 # Key features
 - Set Interval for break or session
 - Automatically switches to break or session when timer comes to end
 - Refresh, Start and Pause any time
-- Notifies with audio when less than 5 seconds left on timer
+- Notifies with beep audio when less than 5 seconds left on timer
 - Set session or break duration for up to 60 minutes
 
 # Install
@@ -47,6 +50,13 @@ $ npm run build
 You will then be able to access it at localhost:5000
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+
+# Running Tests
+
+```shell
+$ npm test
+```
+
 
 # You may also like
 - [Quote Machine](https://github.com/1XWebbyX1/quote-machine-pwa)
