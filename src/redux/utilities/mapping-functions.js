@@ -7,7 +7,8 @@ export  const mapStateToProps = (state)  => {
     breakLength: state.breakLength,
     play: state.play,
     interval: state.interval,
-    time: state.time
+    time: state.time,
+    toggleAnimClass: state.toggleAnimClass
   };
 };
 
@@ -27,6 +28,9 @@ export const mapDispatchToProps = (dispatch) => {
     },
     updateTime : function(time) {
         dispatch(mapModule.updateTime(time));
+    },
+    toggleAnim : function(className) {
+        dispatch(mapModule.toggleAnim(className));
     }
   };
 };
