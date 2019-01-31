@@ -18,21 +18,37 @@ describe('Wrapper', () => {
   const mockUpdatePlay = jest.fn();
   const mockUpdateInterval = jest.fn();
   const mockUpdateTime = jest.fn();
+  const mockToggleAnim = jest.fn();
   // Render the component in the beforeEach so
-  // each test can get a new shallow rendered wrapper
+  // each test can get a new wrapper
   beforeEach(() => {
-    wrapper = shallow(
-      <Wrapper updateSession={mockUpdateSession} updateTime={mockUpdateTime} updatePlay={mockUpdatePlay} updateBreak={mockUpdateBreak} updateInterval={mockUpdateInterval}/>
-    )
+    const props = {
+        time: '25:00',
+        play: false,
+        sessionLength: 25,
+        breakLength: 5,
+        interval: null,
+        toggleAnimClass: '',
+        updateSession: mockUpdateSession,
+        updateBreak: mockUpdateBreak,
+        updatePlay: mockUpdatePlay,
+        updateInterval: mockUpdateInterval,
+        updateTime: mockUpdateTime,
+        toggleAnim: mockToggleAnim
+      };
+      wrapper = mount(
+        <Wrapper {...props}/>
+      );
   });
 
   // Checking the intitial state
   it('should initialize the state object correctly', () => {
-    expect(wrapper).to.have.state('time').to.equal('25:00');
-    expect(wrapper).to.have.state('play').to.equal(false);
-    expect(wrapper).to.have.state('sessionLength').to.equal(25);
-    expect(wrapper).to.have.state('breakLength').to.equal(5);
-    expect(wrapper).to.have.state('interval').to.equal(null);
+    expect(wrapper.props().time).to.equal('25:00');
+    expect(wrapper.props().play).to.equal(false);
+    expect(wrapper.props().sessionLength).to.equal(25);
+    expect(wrapper.props().breakLength).to.equal(5);
+    expect(wrapper.props().interval).to.equal(null);
+    expect(wrapper.props().toggleAnimClass).to.equal('');
 });
 
 
@@ -44,7 +60,7 @@ describe('Wrapper', () => {
       wrapper = mount(
         <Wrapper play={false} updateSession={mockUpdateSession} updateTime={mockUpdateTime} updatePlay={mockUpdatePlay} updateBreak={mockUpdateBreak} updateInterval={mockUpdateInterval}/>
       )
-      playButton = wrapper.find('i').first();
+      playButton = wrapper.find('#play').first();
       expect(wrapper.props().play).to.equal(false);
       playButton.simulate('click');
     });
@@ -77,6 +93,7 @@ describe('when increment is clicked', () => {
     wrapper.unmount();
     mockUpdateSession.mockClear();
     mockUpdateTime.mockClear();
+    mockUpdateBreak.mockClear();
   })
 
   it('should call updateSession and updateTime when sessionLength < 60', () => {
@@ -101,6 +118,7 @@ describe('when increment is clicked', () => {
     expect(mockUpdateSession.mock.calls.length).to.equal(0);
     mockUpdateSession.mockClear();
     mockUpdateTime.mockClear();
+    mockUpdateBreak.mockClear();
   });
 
   it('should call updateBreak and updateTime when breakLength < 60', () => {
@@ -122,7 +140,7 @@ describe('when increment is clicked', () => {
     const breakIncButton = wrapper.find('Label').at(1).find('.inc');
     breakIncButton.simulate('click');
     expect(mockUpdateBreak.mock.calls.length).to.equal(0);
-    //expect(mockUpdateTime.mock.calls.length).to.equal(0);
+    expect(mockUpdateTime.mock.calls.length).to.equal(0);
     mockUpdateBreak.mockClear();
     mockUpdateTime.mockClear();
   });

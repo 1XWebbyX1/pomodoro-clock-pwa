@@ -2,40 +2,66 @@
 
 exports[`Label renders correctly 1`] = `
 <div
-  class="label"
+  className="label"
   id="session-label"
 >
   <p
-    class="head"
+    className="head"
   >
     SESSION LENGTH
   </p>
   <hr
-    class="line"
+    className="line"
   />
   <div
-    class="inline"
+    className="inline"
   >
     <div
       className="wrap-plus inc"
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
-      <i
-        class="fa fa-plus"
-      />
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-plus fa-w-14 "
+        data-icon="plus"
+        data-prefix="fas"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
     </div>
     <p
-      class="length"
+      className="length"
     >
       24
     </p>
     <div
       className="wrap-minus dec"
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
-      <i
-        class="fa fa-minus"
-      />
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-minus fa-w-14 "
+        data-icon="minus"
+        data-prefix="fas"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
     </div>
   </div>
 </div>

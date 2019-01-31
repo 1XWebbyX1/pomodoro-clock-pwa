@@ -16,7 +16,7 @@ describe('Clock', () => {
 
   it("renders correctly", () => {
      const output = renderer.create(
-         <Clock time="24:00" onClick={onClick}/>
+         <Clock time="24:00" animClass='anim-class' onClick={onClick}/>
    ).toJSON();
      expect(output).to.matchSnapshot(); //this will confirm content received through props
   });

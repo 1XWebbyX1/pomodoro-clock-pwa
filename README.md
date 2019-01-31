@@ -10,7 +10,6 @@ For a live demo, visit [github](https://1xwebbyx1.github.io/pomodoro-clock-pwa/)
 Project is created with :
 - React
 - Sass
-- jQuery
 - Redux
 - Chai
 - Enzyme

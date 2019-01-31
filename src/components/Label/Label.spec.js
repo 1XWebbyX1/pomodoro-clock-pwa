@@ -13,7 +13,7 @@ configure({ adapter: new Adapter() });
 
 describe('Label', () => {
   const incSession = () => {};
-  const decSession = () => {});
+  const decSession = () => {};
 
   it("renders correctly", () => {
      const output = renderer.create(
