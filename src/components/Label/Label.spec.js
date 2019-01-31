@@ -12,8 +12,8 @@ import Label from './Label';
 configure({ adapter: new Adapter() });
 
 describe('Label', () => {
-  const incSession = jest.fn();
-  const decSession = jest.fn();
+  const incSession = () => {};
+  const decSession = () => {});
 
   it("renders correctly", () => {
      const output = renderer.create(

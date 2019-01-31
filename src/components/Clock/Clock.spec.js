@@ -12,7 +12,7 @@ import Clock from './Clock';
 configure({ adapter: new Adapter() });
 
 describe('Clock', () => {
-  const onClick = jest.fn();
+  const onClick = () => {};
 
   it("renders correctly", () => {
      const output = renderer.create(

@@ -1,6 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
-import '@fortawesome/fontawesome-free/css/all.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay} from '@fortawesome/free-solid-svg-icons'
 import Label from './Label/Label'
 import Clock from './Clock/Clock'
 
@@ -35,8 +36,8 @@ class Wrapper extends React.Component {
 
 //start - stop the timer
   handlePlay(){
-    $('#play').toggleClass('fa-play');
-    $('#play').toggleClass('fa-pause');
+    //$('#play').toggleClass('fa-play');
+    //$('#play').toggleClass('fa-pause');
     this.props.updatePlay(!this.props.play); // update boolean state with redux
     if(!this.props.play){
       this.props.updateInterval(this.startTimer()); //initiate the timer
@@ -106,7 +107,9 @@ handleRefresh(){
   $('#text').text('SESSION');
   $('.fa-pause').removeClass('fa-pause').addClass('fa-play', 200);
   this.stopAnimation();
-  requestInterval.clear(this.props.interval);
+  if(this.props.interval){
+    requestInterval.clear(this.props.interval);
+  }
   this.props.updateTime('25:00');
   this.props.updatePlay(false);
   this.props.updateSession(25);
@@ -174,7 +177,7 @@ decBreak(){
   render() {
     return (
       <div className='back'>
-        <i id='play' class='fa fa-play' onClick={this.handlePlay}></i>
+        <FontAwesomeIcon id='play' icon={faPlay} onClick={this.handlePlay}/>
         <Clock time={this.props.time} onClick={this.handleRefresh}/>
         <audio id="beep" preload="auto" src="https://goo.gl/65cBl1" ref={(audio) => { this.audioBeep = audio; }} />
         <div className='wrap-label'>

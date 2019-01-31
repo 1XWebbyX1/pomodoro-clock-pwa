@@ -1,5 +1,6 @@
 import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSyncAlt} from '@fortawesome/free-solid-svg-icons'
 
 class Clock extends React.Component {
     render() {
@@ -7,7 +8,7 @@ class Clock extends React.Component {
         <div class="clock">
           <p id='text'>SESSION</p>
           <time id='time'>{this.props.time}</time>
-          <i className='refresh fa fa-sync-alt' onClick={this.props.onClick}></i>
+          <FontAwesomeIcon className='refresh' icon={faSyncAlt} onClick={this.props.onClick}/>
         </div>
       );
     }

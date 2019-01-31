@@ -1,16 +1,17 @@
 import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus} from '@fortawesome/free-solid-svg-icons'
 
 class Label extends React.Component {
     render() {
       return (
-        <div id={this.props.id} class='label'>
-        <p class='head'>{this.props.text}</p>
-        <hr class='line' />
-        <div class='inline'>
-        <div className='wrap-plus inc' onClick={this.props.increment}><i class='fa fa-plus'></i></div>
-        <p class='length'>{this.props.length}</p>
-        <div className='wrap-minus dec' onClick={this.props.decrement}><i  class='fa fa-minus'></i></div>
+        <div id={this.props.id} className='label'>
+        <p className='head'>{this.props.text}</p>
+        <hr className='line' />
+        <div className='inline'>
+        <div className='wrap-plus inc' onClick={this.props.increment}><FontAwesomeIcon icon={faPlus}/></div>
+        <p className='length'>{this.props.length}</p>
+        <div className='wrap-minus dec' onClick={this.props.decrement}><FontAwesomeIcon icon={faMinus}/></div>
         </div>
       </div>
       );
