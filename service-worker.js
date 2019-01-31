@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pomodoro-clock-pwa/precache-manifest.b734881605dae49103a79b0af49fe840.js"
+  "/pomodoro-clock-pwa/precache-manifest.0b4b19879330462c8dd1ba5391f41a36.js"
 );
 
 workbox.clientsClaim();
