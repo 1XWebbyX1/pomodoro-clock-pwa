@@ -12,13 +12,6 @@ var requestInterval = require('request-interval');
 class Wrapper extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      time: '25:00',
-      play: false,
-      sessionLength: 25,
-      breakLength: 5,
-      interval: null
-    }
     this.handlePlay = this.handlePlay.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
     this.switchBreakState = false;
@@ -52,8 +45,9 @@ class Wrapper extends React.Component {
 startTimer(){
   return  requestInterval(1000, function() {
              var regex = /^\d{2}$/;
-             var minutes = this.genTimer().minutes;
-             var seconds = this.genTimer().seconds;
+             var timer = this.genTimer();
+             var minutes = timer.minutes;
+             var seconds = timer.seconds;
             //animate when less than 1 minute
             (minutes == 0) ? this.animate() : this.stopAnimation();
             this.checkAndPlayAudio(minutes, seconds);
@@ -72,9 +66,12 @@ genTimer(){
   var minutes = this.props.time.split(':')[0];
   if(minutes == 0 && seconds == 0){
      requestInterval.clear(this.props.interval);
+     console.log(this.switchBreakState);
+     console.log('hhhh');
      this.switchBreakState = !this.switchBreakState;
+     console.log(this.switchBreakState);
      minutes = (this.switchBreakState) ? this.props.breakLength : this.props.sessionLength;
-     this.switchBreakState ? $('#text').text('BREAK') : $('#text').text('SESSION');
+     (this.switchBreakState) ? $('#text').text('BREAK') : $('#text').text('SESSION');
      this.props.updateInterval(this.startTimer());
   }
   else if(seconds != 0){
@@ -89,9 +86,7 @@ genTimer(){
 
 checkAndPlayAudio(minutes, seconds){
   var promise = this.audioBeep.play();
-  console.log(promise);
      if (promise !== undefined) {
-       console.log('here');
         this.audioBeep.currentTime = 0;
         promise.then(() => {
         (minutes == 0 && seconds <= 5) ? this.audioBeep.play() : this.audioBeep.pause();
